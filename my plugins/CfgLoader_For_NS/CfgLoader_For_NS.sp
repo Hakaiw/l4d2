@@ -118,8 +118,13 @@ Action Timer_CheckTank_Death(Handle timer){
     return Plugin_Handled;
 }
 
-bool IsClientTank(int client){
-    if(client > 1 && client <= MaxClients && IsClientInGame(client) && GetClientTeam(client) == 3 && GetEntProp(client,Prop_Send,"m_zombieClass") == 8)
-        return true;
-    return false;
+stock bool IsClientTank(Client)
+{
+	if (Client > 0 && Client <= MaxClients && IsClientInGame(Client) && GetClientTeam(Client) == 3)
+	{
+		if (GetEntProp(Client, Prop_Send, "m_zombieClass") == 8)
+			return true;
+		return false;
+	}
+	return false;
 }
